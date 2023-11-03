@@ -31,7 +31,8 @@ This is API part of a larger on going project!
 
 ## TODO:
 
-- Validate HTTP requests body prior to decode.
+- Validate HTTP requests body prior to decode
+- JWT Authentication
 - Intergrate SWAGGER ui
 - Taking care of edge cases
 - Testing
