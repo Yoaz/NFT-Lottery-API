@@ -16,6 +16,13 @@ Runs the app in the development mode. Access at [http://localhost:4000](http://l
 
 You may also see any lint errors in the console.
 
+A quicker option is to simply run
+
+### `make run`
+
+which will build the production file and right after run it.
+(production file will be created in ./bin/main)
+
 ## Learn More
 
 You can learn more in regards, find me at: [https://yoaz.info](https://yoaz.info).
