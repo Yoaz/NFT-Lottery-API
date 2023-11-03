@@ -13,28 +13,12 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"net/http"
 
-	"github.com/joho/godotenv"
-	"github.com/yoaz/NFTerryAPI/routes"
+	"github.com/yoaz/NFTerryAPI/api"
 )
 
-func Init(){
-	if err := godotenv.Load(".env"); err != nil{
-		log.Fatalf("There was an error loading the envoirmental variables, error: %s", err)
-	}
-}
 
 func main(){
 	fmt.Println("NFTerry API")
-	Init()
-
-	// Getting the router
-	r := routes.Routes()
-	
-	// Listening to server
-	fmt.Println("Server is getting started...")
-	http.ListenAndServe(":4000", r)
-	
+	api.APIRun()
 }

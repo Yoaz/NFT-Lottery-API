@@ -24,3 +24,7 @@ go.work
 
 # Envoirmentals
 *.env
+
+# Bin folder that holds executable files
+# (use  `go build -o bin/filename`)
+bin/*
