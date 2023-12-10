@@ -18,4 +18,8 @@ func (server *Server) InitRoutes() {
 	server.Router.HandleFunc("/api/user/{id}", server.DeleteOneUser).Methods("DELETE")
 	server.Router.HandleFunc("/api/user/{id}", server.GetOneUser).Methods("GET")
 	server.Router.HandleFunc("/api/users", server.GetAllUsers).Methods("GET")
+
+	//Jackpot Routes
+	server.Router.HandleFunc("/api/jackpot/{date}", server.GetOneJackpotByDate).Methods("GET")
+	server.Router.HandleFunc("/api/jackpot", server.CreateOneJackpot).Methods("POST")
 }

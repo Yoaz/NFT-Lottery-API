@@ -24,13 +24,15 @@ func Home(w http.ResponseWriter, r *http.Request){
 // Get all NFT's
 func (server *Server) GetAllNFTs(w http.ResponseWriter, r *http.Request){
 	w.Header().Set("Content-Type", "application/x-www-form-urlencode")
+	//Allow CORS here By * or specific origin
+    w.Header().Set("Access-Control-Allow-Origin", "*")
 	
 	var resp models.Response
 	var nft models.NFT
 
 	nfts, err := nft.GetAllNFTs(server.DB)
 	if err != nil {
-		resp.BadResponse(w, http.StatusInternalServerError, "failed to fetch users from db", err)
+		resp.BadResponse(w, http.StatusInternalServerError, "failed to fetch NFTs from db", err)
 		return
 	}
 

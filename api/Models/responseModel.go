@@ -37,7 +37,7 @@ func (res *Response) OkResponse(w http.ResponseWriter, status int, message strin
 }
 
 
-// Crafting a failed json response based on status code, message and slice of errors
+// Crafting a failed json response based on status code, message and error
 func (res *Response) BadResponse(w http.ResponseWriter, status int, message string, err error) error  {
 		
 	// Assign struc value

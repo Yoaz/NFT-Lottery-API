@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -24,7 +25,16 @@ type NFT struct {
 	TokenURI string						`json:"tokenuri,omitempty"`
 	OwnerAddress string 				`json:"owneraddress,omitempty"`
 	Active bool							`json:"active,omitempty"`
+	DateAdded time.Time					`json:"dateadded"`
 }
+
+/* -------------------------------- Helpers ----------------------------------*/
+
+//Prepare NFT struct for insertion
+func (nft *NFT) Prepare() {
+	nft.DateAdded = time.Now()
+}
+
 
 
 /* -------------------------------- DB Actions ----------------------------------*/
@@ -32,6 +42,11 @@ type NFT struct {
 /* Insert 1 record */
 func (nft *NFT) InsertOneNFT(db *mongo.Database) (*NFT, error) {
 	collection := db.Collection(os.Getenv("MONGO_DB_NFT_COL_NAME"))
+
+	//Prepare NFT struct
+	nft.Prepare()
+
+	//Calling mongoDB insert one action
 	inserted, err := collection.InsertOne(context.Background(), nft)
 
 	// In case inserted operation failed
@@ -139,7 +154,7 @@ func (nft *NFT) GetAllNFTs(db *mongo.Database) ([]NFT, error) {
 
 		// In case unmarshalling/decoding failed
 		if err != nil {
-			log.Fatalf("There was an error trying to decode the record, err:%s", err)
+			log.Fatalf("There was an error trying to decode the record, err: %s", err)
 		}
 
 		nfts = append(nfts, nft)
